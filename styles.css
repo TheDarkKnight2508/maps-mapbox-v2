@@ -1,0 +1,227 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.mapboxgl-ctrl-top-left {
+    top: 10px;
+    left: 10px;
+}
+
+.mapboxgl-ctrl-top-right {
+    top: 10px;
+    right: 10px;
+}
+
+.mapboxgl-ctrl-group.time-of-day-buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 150px;
+    padding: 5px;
+}
+
+.time-of-day-button {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.time-of-day-button:hover {
+    background-color: #e0e0e0;
+}
+
+.time-of-day-button:focus {
+    outline: none;
+}
+
+/* Dropdown styling */
+.time-of-day-dropdown {
+    position: relative;
+    z-index: 3; /* Ensure dropdown container is above other controls */
+}
+
+.dropdown-button {
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.dropdown-button:hover {
+    background-color: #e0e0e0;
+}
+
+.dropdown-button:focus {
+    outline: none;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 4; /* Ensure dropdown menu is above other elements */
+    padding: 0; /* Remove padding from the menu */
+    width: auto; /* Adjust the width to fit the content */
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-item {
+    color: black;
+    padding: 10px 20px; /* Adjust padding to ensure proper spacing */
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.dropdown-item:hover {
+    background-color: #e0e0e0;
+}
+
+/* Center right positioning for pitch, bearing, and zoom controls */
+.mapboxgl-ctrl-right-center {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.user-location-marker {
+    width: 20px;
+    height: 20px;
+    background-color: rgb(25, 151, 241);
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Styles for the sidebar and the sidebar toggle button */
+#sidebar {
+    height: 100%;
+    width: 400px; /* Increased width */
+    position: absolute;
+    top: 0;
+    left: -400px; /* Adjusted for increased width */
+    background-color: white;
+    z-index: 3; /* Ensure the sidebar is above the map */
+    transition: left 0.3s;
+    padding: 20px; /* Increased padding for better spacing */
+    box-sizing: border-box;
+}
+
+/* Adjust sidebar open state for increased width */
+#sidebar.open {
+    left: 0;
+}
+
+#sidebarToggle {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2; /* Ensure the button is above the sidebar */
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#sidebarClose {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 4; /* Ensure it's above other elements */
+}
+
+#starting-location, #ending-location {
+    position: relative; /* Ensure relative positioning for suggestions */
+    background: white;
+    padding: 8px; /* Adjusted padding */
+    border-radius: 24px; /* More rounded edges */
+    display: flex;
+    align-items: center;
+    width: calc(100% - 16px); /* Adjusted width to fit inside the sidebar with padding */
+    margin-top: 16px; /* Position with some margin */
+    height: 36px; /* Adjust height */
+    border: 2px solid rgb(44, 164, 208); /* Blue border */
+}
+
+#starting-location svg, #ending-location svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    fill: #aaa;
+    flex-shrink: 0;
+    margin-left: 5px;
+}
+
+#starting-input, #ending-input {
+    flex: 1;
+    padding: 8px; /* Adjusted padding */
+    border: none;
+    outline: none;
+    font-size: 16px; /* Adjust font size */
+    background: transparent;
+    width: 100%;
+    border-radius: 24px;
+}
+
+#starting-clear-button, #ending-clear-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px; /* Adjust font size */
+    color: #aaa;
+    margin-left: 8px; /* Adjust margin */
+}
+
+#starting-clear-button:hover, #ending-clear-button:hover {
+    color: #666;
+}
+
+#starting-suggestions, #ending-suggestions {
+    font-family: Calibri, sans-serif; /* Apply Calibri font */
+    position: absolute;
+    top: 100%; /* Position directly beneath the search box */
+    left: 0; /* Align with the left edge of the search box */
+    z-index: 2;
+    background: white;
+    border-radius: 8px; /* More rounded edges */
+    border: 1px solid blue; /* Blue border */
+    max-height: 300px;
+    overflow-y: auto;
+    width: 100%; /* Match the width of the search box */
+    display: none;
+}
+
+.suggestion {
+    font-family: Calibri, sans-serif; /* Apply Calibri font */
+    padding: 12px 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    border-bottom: 1px solid #eee;
+}
+
+.suggestion:hover {
+    background: #f0f0f0;
+}
