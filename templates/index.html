@@ -10,19 +10,27 @@
 </head>
 <body>
     <div id="sidebar">
+
+        <div id="sidebar-title">WIRIN</div>
         <button id="sidebarClose">&times;</button>
+        
         <div id="starting-location" class="search-input">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2a8 8 0 0 1 5.3 13.7l5 5a1 1 0 0 1-1.4 1.4l-5-5A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12A6 6 0 0 0 10 4z"/></svg>
             <input type="text" id="starting-input" placeholder="Enter starting location" autocomplete="off" class="search-input">
             <button id="starting-clear-button" class="clear-button">&times;</button>
-            <div id="starting-suggestions"></div>
         </div>
 
         <div id="ending-location" class="search-input">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 2a8 8 0 0 1 5.3 13.7l5 5a1 1 0 0 1-1.4 1.4l-5-5A8 8 0 1 1 10 2zm0 2a6 6 0 1 0 0 12A6 6 0 0 0 10 4z"/></svg>
             <input type="text" id="ending-input" placeholder="Enter ending location" autocomplete="off" class="search-input">
             <button id="ending-clear-button" class="clear-button">&times;</button>
-            <div id="ending-suggestions"></div>
+        </div>
+
+        <div id="common-suggestions"></div>
+
+        <div id="route-instructions" class="instructions-container">
+            <h2>Route Instructions</h2>
+            <ul id="instructions-list"></ul>
         </div>
     </div>
 
@@ -35,5 +43,6 @@
     <script src="{{ url_for('static', filename='js/map.js') }}"></script>
     <script src="{{ url_for('static', filename='js/controls.js') }}"></script>
     <script src="{{ url_for('static', filename='js/geocode.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/route.js') }}"></script>
 </body>
 </html>
