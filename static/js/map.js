@@ -1,7 +1,7 @@
 let map;
 let userLocationMarker;
-let startMarker;
-let endMarker;
+let startMarker=new mapboxgl.Marker();
+let endMarker=new mapboxgl.Marker();
 let startCoordinates;
 let endCoordinates;
 
@@ -186,12 +186,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebarToggle = document.getElementById('sidebarToggle');
     const sidebar = document.getElementById('sidebar');
     const sidebarClose = document.getElementById('sidebarClose');
+    const map = document.getElementById('map');
 
     sidebarToggle.addEventListener('click', () => {
-        sidebar.classList.toggle('open');
+        sidebar.classList.toggle('open'); 
+        sidebar.classList.add('open');
+        map.style.left = '200px';
+        map.style.right = '-200px';
     });
 
     sidebarClose.addEventListener('click', () => {
         sidebar.classList.remove('open');
+        document.getElementById('sidebar').classList.remove('open');
+        map.style.left = '0';
+        map.style.right = '0'; // Ensure Mapbox resizes correctly
     });
 });
