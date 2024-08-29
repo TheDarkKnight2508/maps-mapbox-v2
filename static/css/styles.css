@@ -7,7 +7,14 @@ body {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 100%;
+    left: 0;
+    right: 0;
+    transition: left 0.3s, right 0.3s;
+}
+
+#sidebar.open + #map {
+    left: 200px;
+    right: 200px;
 }
 
 .mapboxgl-ctrl-top-left {
@@ -118,7 +125,7 @@ body {
     position: absolute;
     top: 0;
     left: -400px; /* Adjusted for increased width */
-    background-color: white;
+    background-color: rgb(24, 23, 23);
     z-index: 3; /* Ensure the sidebar is above the map */
     transition: left 0.3s;
     padding: 20px; /* Increased padding for better spacing */
@@ -135,22 +142,24 @@ body {
     top: 10px;
     left: 10px;
     z-index: 2; /* Ensure the button is above the sidebar */
-    background-color: white;
+    background-color: rgb(24, 23, 23);;
     border: none;
     cursor: pointer;
     padding: 10px;
     border-radius: 5px;
+    color: #e0e0e0;
 }
 
 #sidebarClose {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 15px;
+    right: 15px;
     background-color: transparent;
     border: none;
     font-size: 20px;
     cursor: pointer;
-    z-index: 4; /* Ensure it's above other elements */
+    z-index: 4;
+    color: #e0e0e0; /* Ensure it's above other elements */
 }
 
 #starting-location, #ending-location {
@@ -162,8 +171,13 @@ body {
     align-items: center;
     width: calc(100% - 16px); /* Adjusted width to fit inside the sidebar with padding */
     margin-top: 16px; /* Position with some margin */
-    height: 36px; /* Adjust height */
-    border: 2px solid rgb(44, 164, 208); /* Blue border */
+    height: 30px; /* Adjust height */
+    border: 2px solid rgb(131, 144, 149); /* Blue border */
+}
+
+#starting-location:focus, #ending-location:focus,
+#starting-location:hover, #ending-location:hover {
+    border-color: rgb(44, 164, 208); /* Blue border when hovered or focused */
 }
 
 #starting-location svg, #ending-location svg {
@@ -171,7 +185,7 @@ body {
     height: 20px;
     margin-right: 8px;
     fill: #aaa;
-    flex-shrink: 0;
+    flex-shrink: 0; 
     margin-left: 5px;
 }
 
@@ -199,29 +213,87 @@ body {
     color: #666;
 }
 
-#starting-suggestions, #ending-suggestions {
-    font-family: Calibri, sans-serif; /* Apply Calibri font */
-    position: absolute;
-    top: 100%; /* Position directly beneath the search box */
-    left: 0; /* Align with the left edge of the search box */
+#common-suggestions {
+    font-family: Calibri, sans-serif;
+    font-size: small;
+    position: relative;
     z-index: 2;
-    background: white;
-    border-radius: 8px; /* More rounded edges */
-    border: 1px solid blue; /* Blue border */
-    max-height: 300px;
-    overflow-y: auto;
-    width: 100%; /* Match the width of the search box */
-    display: none;
+    background-color: rgb(24, 23, 23); /* Same as the sidebar background */
+    max-height: 350px; /* Adjust height to fit 6 suggestions */
+    overflow-y: auto; /* Scroll if more than 6 suggestions */
+    width: calc(100% + 32px); /* Full width of the sidebar plus compensating for padding */
+    margin-left: -16px;
+    margin-top: 30px;
+    border-top: 1px solid #444; /* Divider above the first suggestion */
 }
 
 .suggestion {
-    font-family: Calibri, sans-serif; /* Apply Calibri font */
-    padding: 12px 8px;
+    padding: 15px 16px; /* Adjusted padding */
     cursor: pointer;
     transition: background 0.3s ease;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #444; /* Divider with a darker color */
+    color: #e0e0e0; /* Light text color for contrast */
 }
 
 .suggestion:hover {
-    background: #f0f0f0;
+    background: #333; /* Slightly lighter background on hover */
 }
+
+#common-suggestions .suggestion:first-child {
+    border-top: none; /* Remove top border for the first suggestion */
+}
+
+
+#sidebar-title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px; /* Space between the title and the first input box */
+    color: rgb(44, 164, 208); /* Blue color to match the theme */
+}
+
+.instructions-container {
+    margin-top: 20px;
+    padding: 15px 16px; /* Consistent padding with suggestions */
+    max-height: 450px; /* Adjusted height to match suggestions */
+    overflow-y: auto;
+    width: 100%; /* Full width of the sidebar plus compensating for padding */
+    margin-left: -16px;
+    background-color: rgb(24, 23, 23); /* Same background as the sidebar */
+    color: #e0e0e0; /* Light text color for contrast */
+}
+
+.instructions-container h3 {
+    font-size: 18px; /* Slightly larger to stand out */
+    margin-bottom: 10px;
+    color: rgb(44, 164, 208); /* Blue color to match the theme */
+    text-align: center; /* Center align the heading */
+}
+
+.instructions-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0; /* Ensure no extra spacing around the list */
+}
+
+.instructions-container li {
+    margin-bottom: 15px; /* Space between instructions */
+    padding-left: 10px; /* Padding for better readability */
+    border-left: 3px ; /* Blue left border for visual separation */
+    font-size: 14px; /* Match font size with suggestions */
+    color: #e0e0e0; /* Ensure text color consistency */
+    line-height: 1.5; /* Improve readability with line height */
+}
+
+.instructions-container li::before {
+    content: '•';
+    color: rgb(44, 164, 208); /* Blue bullet point */
+    font-size: 18px; /* Slightly larger bullet point */
+    vertical-align: middle;
+    margin-right: 10px; /* Space between bullet and text */
+}
+
+#route-instructions {
+    display: none; /* Hide the instructions container by default */
+}
+
