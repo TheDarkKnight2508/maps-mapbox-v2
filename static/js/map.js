@@ -4,6 +4,7 @@ let startMarker=new mapboxgl.Marker();
 let endMarker=new mapboxgl.Marker();
 let startCoordinates;
 let endCoordinates;
+let routeDetails;
 
 const bangaloreCoordinates = [77.5946, 12.9716];
 
@@ -37,9 +38,6 @@ function initializeMap(center = bangaloreCoordinates) {
     });
 
     map.addControl(new PantoUserLocation(), 'top-right');
-    map.addControl(new PitchControl(), 'bottom-right');
-    map.addControl(new BearingControl(), 'bottom-right');
-    map.addControl(new ZoomControls(), 'bottom-right');
 
     watchUserLocation();
     addTimeOfDayDropdown();
